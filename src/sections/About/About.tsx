@@ -1,39 +1,64 @@
-
+import { Download } from 'lucide-react';
 import styles from './About.module.css';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
+import { Skills } from '../Skills/Skills';
 
 export const About = () => {
-  const terminalText = `I'm a frontend engineer obsessed with performance and pixel perfection.
-Building seamless digital experiences using modern web technologies.
-Always learning, always creating.`;
-  
-  const { displayedText, isTyping, elementRef } = useTypingEffect(terminalText, 30, 500);
+  const terminalText = `whoami`;
+  const { displayedText, isTyping, elementRef } = useTypingEffect(terminalText, 100, 500);
 
   return (
-    <section className={styles.about} id="about">
+    <section className={styles.aboutSection} id="about">
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionNumber}>[01 // ABOUT_AND_SKILLS ]</span>
+        <span className={styles.sectionNumber}>[01]</span>
+        <span className={styles.sectionTitle}>// ABOUT_AND_SKILLS</span>
       </div>
 
-      <div className={styles.content}>
-        <div className={styles.terminalContainer}>
-          <div className={styles.terminalHeader} aria-hidden="true">
-            <div className={styles.terminalDots}>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-            </div>
-            <div className={styles.terminalTitle}>guest@devsync:~</div>
+      <div className={styles.gridContainer}>
+        {/* Left Column - About Content */}
+        <div className={styles.aboutCard}>
+          <div className={styles.terminalDots}>
+            <span className={styles.dot}></span>
+            <span className={styles.dot}></span>
+            <span className={styles.dot}></span>
           </div>
-          <div className={styles.terminalBody}>
-            <p className={styles.command}>&gt; whoami</p>
-            <p className={styles.output} ref={elementRef}>
-              {displayedText}
-              {isTyping && <span className={styles.cursor}>_</span>}
-              {!isTyping && displayedText.length > 0 && <span className={styles.cursorBlink}>_</span>}
-            </p>
+          <div className={styles.whoami}>
+            &gt; <span ref={elementRef}>{displayedText}</span>
+            {isTyping ? <span className={styles.cursor}>_</span> : <span className={styles.cursorBlink}>_</span>}
+          </div>
+          
+          <h2 className={styles.headline}>
+            I’m a frontend engineer<br/>
+            obsessed with <span className={styles.highlight}>performance</span><br/>
+            and <span className={styles.highlight}>pixel perfection.</span>
+          </h2>
+          
+          <div className={styles.dash}>_</div>
+          
+          <p className={styles.description}>
+            I build fast, scalable, and secure web experiences
+            that not only look exceptional but are engineered
+            to perform flawlessly.
+          </p>
+          <p className={styles.description}>
+            With a strong foundation in modern JavaScript
+            ecosystem and a passion for clean UI, I turn ideas
+            into impactful digital products.
+          </p>
+          
+          <div className={styles.actions}>
+            <button className={styles.btn}>
+              <Download size={18} />
+              Download Resume
+            </button>
+            <div className={styles.status}>
+              status: available <span className={styles.statusDot}></span>
+            </div>
           </div>
         </div>
+
+        {/* Right Column & Bottom Row - Skills Content */}
+        <Skills />
       </div>
     </section>
   );

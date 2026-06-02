@@ -1,89 +1,96 @@
-import { useEffect, useRef, useState } from 'react';
 import styles from './Skills.module.css';
+import { ReactIcon, TSIcon, ViteIcon, NodeIcon, NextJSIcon, PythonIcon, FigmaIcon, TailwindIcon, PostgresIcon, GraphQLIcon, DockerIcon, AWSIcon, MongoDBIcon } from '../../components/Icons';
 
 export const Skills = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [lines, setLines] = useState<{ x1: number, y1: number, x2: number, y2: number }[]>([]);
-
-  // Calculate lines between nodes after mount
-  useEffect(() => {
-    const calculateLines = () => {
-      if (!containerRef.current) return;
-      const nodes = Array.from(containerRef.current.querySelectorAll(`.${styles.node}`));
-      if (nodes.length < 2) return;
-      
-      const newLines = [];
-      const containerRect = containerRef.current.getBoundingClientRect();
-
-      // Connect nodes sequentially for a constellation effect
-      for (let i = 0; i < nodes.length - 1; i++) {
-        const rect1 = nodes[i].getBoundingClientRect();
-        const rect2 = nodes[i + 1].getBoundingClientRect();
-        
-        newLines.push({
-          x1: rect1.left + rect1.width / 2 - containerRect.left,
-          y1: rect1.top + rect1.height / 2 - containerRect.top,
-          x2: rect2.left + rect2.width / 2 - containerRect.left,
-          y2: rect2.top + rect2.height / 2 - containerRect.top
-        });
-      }
-      setLines(newLines);
-    };
-
-    calculateLines();
-    window.addEventListener('resize', calculateLines);
-    return () => window.removeEventListener('resize', calculateLines);
-  }, []);
-
   return (
-    <section className={styles.skills} id="skills">
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionTitle}>&lt;TECH_STACK_OVERFLOW&gt;</span>
-      </div>
-      
-      <ul className={styles.srOnly}>
-        <li>React</li>
-        <li>TypeScript</li>
-        <li>Vite</li>
-        <li>Node.js</li>
-      </ul>
+    <>
+      <div className={styles.constellationCard} aria-label="Core Skills Constellation">
+        <div className={styles.radarContainer}>
+          <svg className={styles.radarLines} viewBox="0 0 400 400" aria-hidden="true">
+            <polygon points="320,200 260,304 140,304 80,200 140,96 260,96" fill="none" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeWidth="1" />
+            <line x1="200" y1="200" x2="320" y2="200" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <line x1="200" y1="200" x2="260" y2="304" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <line x1="200" y1="200" x2="140" y2="304" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <line x1="200" y1="200" x2="80" y2="200" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <line x1="200" y1="200" x2="140" y2="96" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <line x1="200" y1="200" x2="260" y2="96" stroke="var(--color-accent-primary)" strokeOpacity="0.3" strokeDasharray="4 4" />
+            <circle cx="200" cy="200" r="3" fill="var(--color-accent-primary)" />
+            <circle cx="320" cy="200" r="4" fill="var(--color-accent-primary)" />
+            <circle cx="260" cy="304" r="4" fill="var(--color-accent-primary)" />
+            <circle cx="140" cy="304" r="4" fill="var(--color-accent-primary)" />
+            <circle cx="80" cy="200" r="4" fill="var(--color-accent-primary)" />
+            <circle cx="140" cy="96" r="4" fill="var(--color-accent-primary)" />
+            <circle cx="260" cy="96" r="4" fill="var(--color-accent-primary)" />
+          </svg>
 
-      <div className={styles.constellationContainer} ref={containerRef} aria-hidden="true">
-        {/* SVG Lines */}
-        <svg className={styles.svgOverlay}>
-          {lines.map((line, idx) => (
-            <line 
-              key={idx}
-              x1={line.x1} 
-              y1={line.y1} 
-              x2={line.x2} 
-              y2={line.y2} 
-              className={styles.connectionLine} 
-            />
-          ))}
-        </svg>
+          <div className={styles.node} style={{ top: '24%', left: '35%' }}>
+            <div className={styles.iconBox}><ReactIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>React</div>
+          </div>
+          
+          <div className={styles.node} style={{ top: '24%', left: '65%' }}>
+            <div className={styles.iconBox}><TSIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>TypeScript</div>
+          </div>
+          
+          <div className={styles.node} style={{ top: '50%', left: '80%' }}>
+            <div className={styles.iconBox}><ViteIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>Vite</div>
+          </div>
+          
+          <div className={styles.node} style={{ top: '76%', left: '65%' }}>
+            <div className={styles.iconBox}><NodeIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>Node.js</div>
+          </div>
 
-        {/* Nodes */}
-        <div className={`${styles.node} ${styles.nodeReact}`} style={{ top: '10%', left: '50%' }}>
-          [ React ]
-        </div>
-        <div className={`${styles.node} ${styles.nodeTS}`} style={{ top: '50%', left: '20%' }}>
-          [ TS ]
-        </div>
-        <div className={`${styles.node} ${styles.nodeVite}`} style={{ top: '45%', left: '80%' }}>
-          [ Vite ]
-        </div>
-        <div className={`${styles.node} ${styles.nodeNode}`} style={{ top: '80%', left: '50%' }}>
-          [ Node.js ]
+          <div className={styles.node} style={{ top: '76%', left: '35%' }}>
+            <div className={styles.iconBox}><NextJSIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>Next.js</div>
+          </div>
+          
+          <div className={styles.node} style={{ top: '50%', left: '20%' }}>
+            <div className={styles.iconBox}><PythonIcon className={styles.nodeIcon} /></div>
+            <div className={styles.nodeLabel}>Python</div>
+          </div>
         </div>
       </div>
-      
-      <div className={styles.staticGrid}>
-        <div className={styles.gridItem}>[ Figma ]</div>
-        <div className={styles.gridItem}>[ Tailwind ]</div>
-        <div className={styles.gridItem}>[ PostgreSQL ]</div>
-        <div className={styles.gridItem}>[ GraphQL ]</div>
+
+      <div className={styles.bottomCard} aria-label="Tech Stack Overflow">
+        <div className={styles.bottomTitle}>
+          <span className={styles.promptArrow}>&gt;_</span> TECH STACK OVERFLOW
+        </div>
+        
+        <div className={styles.stackList}>
+          <div className={styles.stackItem}>
+            <FigmaIcon className={styles.stackIcon} />
+            <span>Figma</span>
+          </div>
+          <div className={styles.stackItem}>
+            <TailwindIcon className={styles.stackIcon} />
+            <span>Tailwind CSS</span>
+          </div>
+          <div className={styles.stackItem}>
+            <PostgresIcon className={styles.stackIcon} />
+            <span>PostgreSQL</span>
+          </div>
+          <div className={styles.stackItem}>
+            <GraphQLIcon className={styles.stackIcon} />
+            <span>GraphQL</span>
+          </div>
+          <div className={styles.stackItem}>
+            <DockerIcon className={styles.stackIcon} />
+            <span>Docker</span>
+          </div>
+          <div className={styles.stackItem}>
+            <AWSIcon className={styles.stackIcon} />
+            <span>AWS</span>
+          </div>
+          <div className={styles.stackItem}>
+            <MongoDBIcon className={styles.stackIcon} />
+            <span>MongoDB</span>
+          </div>
+        </div>
       </div>
-    </section>
+    </>
   );
 };

@@ -1,7 +1,8 @@
-
 import styles from './Hero.module.css';
 import { useCountUp } from '../../hooks/useCountUp';
 import { ImageLoader } from '../../components/ImageLoader/ImageLoader';
+import { Trophy } from 'lucide-react';
+import heroImage from '../../assets/hero_developer.png';
 
 export const Hero = () => {
   const { count: completedProjects, elementRef: projectsRef } = useCountUp(97);
@@ -13,39 +14,58 @@ export const Hero = () => {
     <section className={styles.hero} id="hero">
       <div className={styles.topBar}>
         <div className={styles.logo}>// DevSync</div>
-        <button className={styles.collaborateBtn} aria-label="Let's Collaborate">Let's Collaborate</button>
+        <div className={styles.menuIcon}>[ = ]</div>
+        <button className={styles.collaborateBtn} aria-label="Let's Collaborate">
+          <span className={styles.statusDot}></span> Let's Collaborate
+        </button>
       </div>
 
       <div className={styles.mainContent}>
         <div className={styles.typographyArea}>
-          <div className={styles.experienceTag}>&lt;6+ Year Experience&gt;</div>
-          <h1 className={styles.headline}>
+          <h1 className={styles.primaryHeadline}>6+ YEAR<br/>EXPERIENCE</h1>
+          <h2 className={styles.secondaryHeadline}>
             BUILDING FAST,<br />
             SCALABLE, AND<br />
             SECURE WEBSITE
-          </h1>
+          </h2>
           
           <div className={styles.socialLinks}>
-            <a href="#" aria-label="Instagram">/ Instagram</a>
-            <a href="#" aria-label="Twitter">/ Twitter (X)</a>
-            <a href="#" aria-label="LinkedIn">/ LinkedIn</a>
-            <a href="#" aria-label="GitHub">/ GitHub</a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              Instagram
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+              Twitter (X)
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              LinkedIn
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              GitHub
+            </a>
           </div>
         </div>
 
         <div className={styles.portraitArea}>
           <div className={styles.imageContainer}>
             <ImageLoader 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" 
+              src={heroImage} 
               alt="Leslie A. Portrait" 
             />
+            <div className={styles.nameTag} aria-hidden="true">
+              <span className={styles.statusDot}></span> // Leslie A.
+            </div>
           </div>
-          <div className={styles.nameTag} aria-hidden="true">// Leslie A.</div>
         </div>
       </div>
 
       <div className={styles.achievements}>
-        <div className={styles.achievementTag}>&lt;Success & Achievements&gt;</div>
+        <div className={styles.achievementTag}>
+          <Trophy size={18} /> SUCCESS & ACHIEVEMENTS
+        </div>
         <div className={styles.statsGrid}>
           <div className={styles.statItem} ref={projectsRef}>
             <div className={styles.statNumber}>{completedProjects}</div>
