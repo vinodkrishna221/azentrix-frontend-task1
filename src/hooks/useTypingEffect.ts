@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 
-export function useTypingEffect(text: string, speed: number = 50, startDelay: number = 0) {
+export function useTypingEffect<T extends HTMLElement = HTMLElement>(text: string, speed: number = 50, startDelay: number = 0) {
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<T>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

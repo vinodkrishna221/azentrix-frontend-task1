@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 
-export function useCountUp(end: number, duration: number = 2000) {
+export function useCountUp<T extends HTMLElement = HTMLDivElement>(end: number, duration: number = 2000) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement | HTMLSpanElement>(null);
+  const elementRef = useRef<T>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

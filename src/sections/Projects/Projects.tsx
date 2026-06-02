@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Projects.module.css';
+import { ImageLoader } from '../../components/ImageLoader/ImageLoader';
 
 const PROJECTS_DATA = [
-  { id: 1, title: 'E-Commerce Matrix', tech: 'React, Node, PostgreSQL', img: '' },
-  { id: 2, title: 'DeFi Dashboard', tech: 'TypeScript, Web3, Tailwind', img: '' },
-  { id: 3, title: 'Neural Network Visualizer', tech: 'Three.js, React, Python', img: '' },
+  { id: 1, title: 'E-Commerce Matrix', tech: 'React, Node, PostgreSQL', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop' },
+  { id: 2, title: 'DeFi Dashboard', tech: 'TypeScript, Web3, Tailwind', img: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=800&auto=format&fit=crop' },
+  { id: 3, title: 'Neural Network Visualizer', tech: 'Three.js, React, Python', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop' },
 ];
 
 export const Projects = () => {
@@ -36,10 +37,12 @@ export const Projects = () => {
               key={project.id} 
               className={styles.projectCard}
               onMouseEnter={() => setActiveProject(project)}
+              onFocus={() => setActiveProject(project)}
+              tabIndex={0}
+              role="region"
+              aria-label={`Project: ${project.title}`}
             >
-              <div className={styles.imagePlaceholder}>
-                [ Project Image 0{project.id} ]
-              </div>
+              <ImageLoader src={project.img} alt={project.title} className={styles.projectImage} />
             </div>
           ))}
         </div>

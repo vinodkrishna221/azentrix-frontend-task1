@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './About.module.css';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
 
@@ -17,7 +17,7 @@ Always learning, always creating.`;
 
       <div className={styles.content}>
         <div className={styles.terminalContainer}>
-          <div className={styles.terminalHeader}>
+          <div className={styles.terminalHeader} aria-hidden="true">
             <div className={styles.terminalDots}>
               <span className={styles.dot}></span>
               <span className={styles.dot}></span>

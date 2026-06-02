@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Skills.module.css';
 
 export const Skills = () => {
@@ -41,7 +41,14 @@ export const Skills = () => {
         <span className={styles.sectionTitle}>&lt;TECH_STACK_OVERFLOW&gt;</span>
       </div>
       
-      <div className={styles.constellationContainer} ref={containerRef}>
+      <ul className={styles.srOnly}>
+        <li>React</li>
+        <li>TypeScript</li>
+        <li>Vite</li>
+        <li>Node.js</li>
+      </ul>
+
+      <div className={styles.constellationContainer} ref={containerRef} aria-hidden="true">
         {/* SVG Lines */}
         <svg className={styles.svgOverlay}>
           {lines.map((line, idx) => (

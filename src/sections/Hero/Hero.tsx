@@ -1,6 +1,7 @@
-import React from 'react';
+
 import styles from './Hero.module.css';
 import { useCountUp } from '../../hooks/useCountUp';
+import { ImageLoader } from '../../components/ImageLoader/ImageLoader';
 
 export const Hero = () => {
   const { count: completedProjects, elementRef: projectsRef } = useCountUp(97);
@@ -12,7 +13,7 @@ export const Hero = () => {
     <section className={styles.hero} id="hero">
       <div className={styles.topBar}>
         <div className={styles.logo}>// DevSync</div>
-        <button className={styles.collaborateBtn}>Let's Collaborate</button>
+        <button className={styles.collaborateBtn} aria-label="Let's Collaborate">Let's Collaborate</button>
       </div>
 
       <div className={styles.mainContent}>
@@ -25,18 +26,21 @@ export const Hero = () => {
           </h1>
           
           <div className={styles.socialLinks}>
-            <a href="#">/ Instagram</a>
-            <a href="#">/ Twitter (X)</a>
-            <a href="#">/ LinkedIn</a>
-            <a href="#">/ GitHub</a>
+            <a href="#" aria-label="Instagram">/ Instagram</a>
+            <a href="#" aria-label="Twitter">/ Twitter (X)</a>
+            <a href="#" aria-label="LinkedIn">/ LinkedIn</a>
+            <a href="#" aria-label="GitHub">/ GitHub</a>
           </div>
         </div>
 
         <div className={styles.portraitArea}>
           <div className={styles.imageContainer}>
-            <div className={styles.imagePlaceholder}></div>
+            <ImageLoader 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" 
+              alt="Leslie A. Portrait" 
+            />
           </div>
-          <div className={styles.nameTag}>// Leslie A.</div>
+          <div className={styles.nameTag} aria-hidden="true">// Leslie A.</div>
         </div>
       </div>
 
